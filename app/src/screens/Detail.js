@@ -1,42 +1,23 @@
 import React, { Component } from 'react';
-import { FlatList, StyleSheet, Text, View, TouchableOpacity, Linking, SafeAreaView, Keyboard, ImageBackground } from 'react-native';
+import { FlatList, StyleSheet, Text, View, TouchableOpacity, Linking, SafeAreaView, Keyboard, ImageBackground,Image } from 'react-native';
 
-// //Imported Libraries
-// import NetInfo from '@react-native-community/netinfo';
-import { connect } from 'react-redux';
-// import TextTicker from 'react-native-text-ticker'
 import colors from '../styles/Colors';
 import { sizeWidth,sizeFont,sizeHeight } from '../util/Size';
-// // Common Classes 
-// import { sizeFont, sizeHeight, sizeWidth } from '../../util/Size';
-// import { errMessage, Strings } from '../../strings/Strings';
-// import colors from '../../../res/styles/Colors';
-// import NavigationActions from '../../routers/NavigationActions';
-// import NetHandleBack from '../../component/NetHandleBack';
-// import NetScreenReplace from '../../component/NetScreenReplace';
-// import NetIcons from '../../component/NetIcons';
-// import { LogDisplay } from '../../util/Utils';
-// import NetHeaderClass from '../../component/NetHeaderClass';
-// import { DrawerActions } from 'react-navigation-drawer';
-// import { Images } from '../../util/ImagesConst';
-// import { HOMEDATA } from '../../util/Constant';
-// import NetTextLabel from '../../component/NetTextLabel';
-// import { pageName, TrackScreen } from '../../util/FirebaseAnalytics';
-// import NetAlert from '../../component/NetAlert'
-// import { FONT_NORMAL, FONT_MEDEIUM, FONT_BOLD, FONT_REGULAR, FONT_LIGHT } from './../../util/Font';
-
-// var unsubscribe;
+import Validation from '../util/Validation';
 export default class Detail extends Component {
     /* *****************************************************************************    LIFECYCLE METHOD  ******************************************************************************** */
     /* Constructor */
     constructor(props) {
         super(props);
         this.state = {
-            dialogVisible: false
+            dialogVisible: false,
+            artObject:{},
         };
     }
     //LifeCycle Method
     componentDidMount() {
+       this.setState({artObject:this.props.navigation.state.params.artObject}) 
+        // 
         // unsubscribe = NetInfo.addEventListener(state => {
         //     this.setState({ isConnected: state.isInternetReachable });
         //     this.forceUpdate();
@@ -60,28 +41,47 @@ export default class Detail extends Component {
     render() {
         return (
             <View style={styles.container}>
+                {/* Image */}
                 <View style={{ height: '30%' }}>
+                {!this.state.artObject.hasOwnProperty('primaryimageurl') || Validation.isEmpty(this.state.artObject.primaryimageurl) ? 
                     <View style={{ height: '100%', width: '100%', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center' }}>
-                        <Text style={{ color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(5), fontWeight: 'bold' }}>{'NO IMAGE FOUND'}</Text>
+                        <Text style={{ color: colors.COLOR_GREY, fontSize: sizeFont(5), fontWeight: 'bold' }}>{'NO IMAGE FOUND'}</Text>
                     </View>
-                    {/* <Image resizeMode="contain" source={require('../HarvardArtMuseum/assets/Adult.png')} style={{height:'100%',width:'100%',backgroundColor:colors.COLOR_BLUE}}></Image> */}
+                    : <Image resizeMode="contain" source={{uri:this.state.artObject.primaryimageurl}} style={{height:'100%',width:'100%',backgroundColor:colors.COLOR_BLUE}}></Image> 
+                }
                 </View>
+                {/* Image */}
+                
+                {/* Art Info */}
                 <View style={{ height: '10%', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', width: '97%', alignSelf: 'center' }}>
-                    <Text style={{ color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(5), fontWeight: '600', paddingRight: sizeWidth(2), paddingLeft: sizeWidth(2) }}>{'Art Info'}</Text>
-                    <Image source={require('../../../assets/True.png')} resizeMode="contain" style={{ height: sizeWidth(5), width: sizeWidth(5) }}></Image>
+                    <Text style={{ color: colors.COLOR_GREY, fontSize: sizeFont(5), fontWeight: '600', paddingRight: sizeWidth(2), paddingLeft: sizeWidth(2) }}>{'ART INFO'}</Text>
+                    {this.state.artObject.verificationlevel==0
+                        ?<Image source={require('../../../assets/False.png')} resizeMode="contain" style={{ height: sizeWidth(5), width: sizeWidth(5) }}></Image>
+                        :<Image source={require('../../../assets/True.png')} resizeMode="contain" style={{ height: sizeWidth(5), width: sizeWidth(5) }}></Image>
+                    }
                 </View>
+                {/* Art Info */}
+
+                {/* Medium */}
+                {this.state.artObject.hasOwnProperty('medium') && !Validation.isEmpty(this.state.artObject.medium) ? 
                 <View style={{ width: '97%', alignSelf: 'center', marginBottom: sizeWidth(2) }}>
-                    <Text style={{ color: colors.COLOR_BLACK, fontSize: sizeFont(3.5) }}>
+                    <Text style={styles.descText}>
                         <Text>{'Medium:'}</Text>
-                        <Text style={{ paddingLeft: sizeWidth(2) }}>{'bvhkdfjkbvjbvbsmvbsvmsdbvmbmvbsmbvbsmbvmsbbvmsbmvbmsbvmbsmbvmsbmvbsmbvmsbmbvbsmbvmsmvmbmbmsfsdfsdfds'}</Text>
+                        <Text style={{ paddingLeft: sizeWidth(2.3) }}>{this.state.artObject.medium}</Text>
                     </Text>
                 </View>
-                <View style={{ width: '97%', alignSelf: 'center', marginBottom: sizeWidth(2), marginTop: sizeWidth(2) }}>
-                    <Text style={{ color: colors.COLOR_BLACK, fontSize: sizeFont(3.5) }}>
-                        <Text>{'Devision:'}</Text>
-                        <Text style={{ paddingLeft: sizeWidth(2) }}>{'bvhkdfjkbvjbvbsmvbsvmsdbvmbmvbsmbvbsmbvmsbbvmsbmvbmsbvmbsmbvmsbmvbsmbvmsbmbvbsmbvmsmvmbmbmsfsdfsdfds'}</Text>
+                :null}
+                {/* Medium */}
+
+                {/* Division */}
+                {/* <View style={{ width: '97%', alignSelf: 'center', marginBottom: sizeWidth(2), marginTop: sizeWidth(2) }}>
+                    <Text style={styles.descText}>
+                        <Text>{'Division:'}</Text>
+                        <Text style={{ paddingLeft: sizeWidth(2.3) }}>{'bvhkdfjkbvjbvbsmvbsvmsdbvmbmvbsmbvbsmbvmsbbvmsbmvbmsbvmbsmbvmsbmvbsmbvmsbmbvbsmbvmsmvmbmbmsfsdfsdfds'}</Text>
                     </Text>
-                </View>
+                </View> */}
+                {/* Division */}
+
                 <View style={{ width: '97%', alignSelf: 'center', marginBottom: sizeWidth(2), marginTop: sizeWidth(2) }}>
                     <Text style={{ color: colors.COLOR_BLACK, fontSize: sizeFont(3.5) }}>
                         <Text>{'Artist:'}</Text>
@@ -99,7 +99,7 @@ export default class Detail extends Component {
                     <Text style={{ color: colors.COLOR_BLACK, fontSize: sizeFont(3.5), paddingRight: sizeWidth(2), paddingLeft: sizeWidth(2), width: '100%', marginTop: sizeWidth(2) }}>{'hsakdhkasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjasjddhaskdhkashdak'}</Text>
                 </View>
                 {/* <View style={{height:'15%',backgroundColor:"green",justifyContent:'center',alignItems:'center'}}> */}
-                <TouchableOpacity onPress={() => { window.open('https://github.com/expo/expo/issues') }} style={{ width: '60%', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center', margin: sizeWidth(10), alignSelf: 'center', padding: sizeWidth(3) }}>
+                <TouchableOpacity onPress={() => { Linking.openURL('https://github.com/expo/expo/issues') }} style={{ width: '60%', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center', margin: sizeWidth(10), alignSelf: 'center', padding: sizeWidth(3) }}>
                     <Text>{'Click for more info'}</Text>
                 </TouchableOpacity>
                 {/* </View> */}
@@ -164,6 +164,11 @@ const styles = StyleSheet.create({
           color: colors.COLOR_BLUE,
           fontWeight: 'bold',
           fontSize: sizeWidth(4)
+        },
+        descText:{
+            color: colors.COLOR_GREY,
+            fontSize: sizeFont(3.6),
+            fontWeight:"500"
         },
     // container: { flex: 1, },
     // titleStyle: { flex: 1, alignSelf: 'center', fontSize: sizeFont(4), color: colors.COLOR_YELLOW,fontFamily:FONT_MEDEIUM },

@@ -3,7 +3,7 @@ import { StyleSheet, TextInput, View, Text, Image, TouchableOpacity } from "reac
 import propTypes from 'prop-types'
 import { sizeWidth, sizeFont } from "../util/Size";
 import colors from "../styles/Colors";
-
+import Validation from '../util/Validation';
 export default class ArtCommon extends Component {
     static propTypes = {
         myIndex: propTypes.any,
@@ -21,8 +21,8 @@ export default class ArtCommon extends Component {
     };
 
     static defaultProps = {
-        titleTextStyle: { color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(3.5), textAlign: 'center', paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1) },
-        imgStyle: { height: sizeWidth(35), width: '70%', alignSelf: 'center' },
+        titleTextStyle: { height:sizeWidth(11),color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(3.5), textAlign: 'center', paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1) },
+        imgStyle: { height: sizeWidth(35), width: '70%', alignSelf: 'center',marginTop:sizeWidth(2),marginBottom:sizeWidth(2) },
         bottomTitleStyle: { color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(2.5), paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1), paddingTop: sizeWidth(2), paddingBottom: sizeWidth(1), textAlign: 'center' },
         bottomdescStyle: { color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(2.5), paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1), textAlign: 'center' },
         titleNumberLines : 2 
@@ -38,7 +38,11 @@ export default class ArtCommon extends Component {
         return (
             <TouchableOpacity onPress={() => this.onItemPress(myIndex, myItem)} style={styles.container}>
                 <Text numberOfLines={titleNumberLines} style={titleTextStyle}>{titleText}</Text>
-                <Image style={imgStyle} resizeMode="contain" source={imgSource}></Image>
+                { Validation.isEmpty(imgSource) ? 
+                    <View style={{ height: sizeWidth(35), width: '70%', alignSelf: 'center', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(4), fontWeight: 'bold',textAlign:'center' }}>{'NO IMAGE FOUND'}</Text>
+                    </View>
+                :<Image style={imgStyle} resizeMode="cover" source={{uri:imgSource}}></Image>}
                 <Text style={bottomTitleStyle}>{bottomTitle}</Text>
                 <Text style={bottomdescStyle}>{bottomdesc}</Text>
             </TouchableOpacity>
