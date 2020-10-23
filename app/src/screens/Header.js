@@ -14,19 +14,21 @@ export default class Header extends PureComponent {
     static propTypes = {
         title: PropTypes.any,
         imgCloseBack: PropTypes.any,
+        BackgoundColor: PropTypes.any,
         BackPress: PropTypes.func,
+        BackimgTint:PropTypes.any
 
     };
     render() {
-        const { title, imgCloseBack, } = this.props;
+        const { title, imgCloseBack, BackgoundColor,BackimgTint } = this.props;
         return (
 
-            <View style={styles.container}>
-                <TouchableOpacity activeOpacity={0.7} onPress={() => this.BackPress()} style={styles.firstView}>
-                    {Validation.isEmpty(imgCloseBack) ? '' : <Image source={imgCloseBack} resizeMode="contain" style={styles.backImgStyle}></Image>}
+            <View style={[styles.container,{backgroundColor: BackgoundColor}]}>
+                <TouchableOpacity activeOpacity={0.7} onPress={() => this.BackPress()} style={[styles.firstView]}>
+                    {Validation.isEmpty(imgCloseBack) ? '' : <Image source={imgCloseBack} resizeMode="contain" style={[styles.backImgStyle,{tintColor:BackimgTint}]}></Image>}
                 </TouchableOpacity>
                 <View style={styles.centerView}>
-                    <Text style={styles.titleStyle}>{title}</Text>
+                    <Text style={[styles.titleStyle,{color:BackimgTint}]}>{title}</Text>
                 </View>
                 <View style={styles.lastView}></View>
             </View>
@@ -38,7 +40,7 @@ export default class Header extends PureComponent {
 };
 const styles = StyleSheet.create({
     container: {
-        height: sizeWidth(11), backgroundColor: colors.COLOR_BLUE, flexDirection: 'row'
+        height: sizeWidth(11), flexDirection: 'row'
     },
     firstView: {
         flex: 0.15, justifyContent: 'center', alignItems: 'center'

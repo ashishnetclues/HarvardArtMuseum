@@ -3,7 +3,8 @@ import { StyleSheet, TextInput, View, Text, Image, TouchableOpacity } from "reac
 import propTypes from 'prop-types'
 import { sizeWidth, sizeFont } from "../util/Size";
 import colors from "../styles/Colors";
-import Validation from '../util/Validation';
+import Validation from '../util/Validation'
+
 export default class ArtCommon extends Component {
     static propTypes = {
         myIndex: propTypes.any,
@@ -21,7 +22,7 @@ export default class ArtCommon extends Component {
     };
 
     static defaultProps = {
-        titleTextStyle: { height:sizeWidth(11),color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(3.5), textAlign: 'center', paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1) },
+        titleTextStyle: { color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(3.5), textAlign: 'center', paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1),height:sizeWidth(10) },
         imgStyle: { height: sizeWidth(35), width: '70%', alignSelf: 'center',marginTop:sizeWidth(2),marginBottom:sizeWidth(2) },
         bottomTitleStyle: { color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(2.5), paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1), paddingTop: sizeWidth(2), paddingBottom: sizeWidth(1), textAlign: 'center' },
         bottomdescStyle: { color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(2.5), paddingLeft: sizeWidth(1), paddingRight: sizeWidth(1), textAlign: 'center' },
@@ -36,13 +37,14 @@ export default class ArtCommon extends Component {
     render() {
         const { titleTextStyle, titleText, imgSource, imgStyle, bottomTitle, bottomTitleStyle, bottomdesc, bottomdescStyle, titleNumberLines,onItemPress,myIndex,myItem } = this.props;
         return (
-            <TouchableOpacity onPress={() => this.onItemPress(myIndex, myItem)} style={styles.container}>
+            <TouchableOpacity onPress={() => this.onItemPress(myIndex, myItem)} style={[styles.container,{marginLeft: myIndex%2 === 0 ? sizeWidth(3) : sizeWidth(3)}]}>
                 <Text numberOfLines={titleNumberLines} style={titleTextStyle}>{titleText}</Text>
                 { Validation.isEmpty(imgSource) ? 
                     <View style={{ height: sizeWidth(35), width: '70%', alignSelf: 'center', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center' }}>
                         <Text style={{ color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(4), fontWeight: 'bold',textAlign:'center' }}>{'NO IMAGE FOUND'}</Text>
                     </View>
-                :<Image style={imgStyle} resizeMode="cover" source={{uri:imgSource}}></Image>}
+                 :
+                <Image style={imgStyle} resizeMode="cover" source={imgSource}></Image> }
                 <Text style={bottomTitleStyle}>{bottomTitle}</Text>
                 <Text style={bottomdescStyle}>{bottomdesc}</Text>
             </TouchableOpacity>
@@ -51,6 +53,6 @@ export default class ArtCommon extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 0.5, marginTop: sizeWidth(3), marginLeft: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3)
+        flex: 0.5, marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3)
     }
 })
