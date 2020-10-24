@@ -14,7 +14,7 @@ import {
 } from '../actions/OrganizationAction';
 import { StatusBar } from 'expo-status-bar';
 
-const PAGE_SIZE = 30
+const PAGE_SIZE = 50
 
 class Home extends Component {
     /* *****************************************************************************    LIFECYCLE METHOD  ******************************************************************************** */
@@ -106,13 +106,14 @@ class Home extends Component {
                 <View style={styles.container}>
                     <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Art List'}/>
                     <View style={styles.flatlistView}>
-                        <FlatList showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{ flexGrow: 1 }} 
+                        <FlatList 
+                        showsVerticalScrollIndicator={false}
                         numColumns={2} 
                         data={this.props.dataList} 
                         renderItem={this.renderItem}
                         ListFooterComponent={this.renderFooter.bind(this)}
                         onEndReachedThreshold={0.01}
+                        keyExtractor={(item, index) => item.id.toString()}
                         onEndReached={this.handleLoadMore.bind(this)}
                         />
                     </View>
@@ -125,7 +126,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     listItemContainer: { flex: 0.5, marginTop: sizeWidth(3), marginLeft: sizeWidth(3),backgroundColor:colors.COLOR_BLUE,padding:sizeWidth(3)},
-    flatlistView:{ flex: 1,backgroundColor: colors.COLOR_WHITE,paddingBottom: sizeWidth(3),marginRight:sizeWidth(1.5) }
+    flatlistView:{ backgroundColor: colors.COLOR_WHITE,paddingBottom: sizeWidth(3),flex:1,marginRight:sizeWidth(1.5) }
 });
 
 const mapStateToProps = state => {

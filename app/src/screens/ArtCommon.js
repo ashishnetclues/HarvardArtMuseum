@@ -38,6 +38,7 @@ export default class ArtCommon extends Component {
         const { titleTextStyle, titleText, imgSource, imgStyle, bottomTitle, bottomTitleStyle, bottomdesc, bottomdescStyle, titleNumberLines,onItemPress,myIndex,myItem } = this.props;
         return (
             <TouchableOpacity onPress={() => this.onItemPress(myIndex, myItem)} style={[styles.container]}>
+                <View style={{width:'100%'}}>
                 <Text numberOfLines={titleNumberLines} style={titleTextStyle}>{titleText}</Text>
                 { Validation.isEmpty(imgSource) ? 
                     <View style={{ height: sizeWidth(35), width: '70%', alignSelf: 'center', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center' }}>
@@ -47,12 +48,13 @@ export default class ArtCommon extends Component {
                 <Image style={imgStyle} resizeMode="cover" source={{uri:imgSource}}></Image> }
                 <Text style={bottomTitleStyle}>{bottomTitle}</Text>
                 <Text style={bottomdescStyle}>{bottomdesc}</Text>
+                </View>
             </TouchableOpacity>
         )
     }
 }
 const styles = StyleSheet.create({
     container: {
-        width: sizeWidth(47), marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3),marginLeft:sizeWidth(1.5)
+        flex:1, marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3),marginLeft:sizeWidth(1.5)
     }
 })
