@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {Component} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
@@ -8,6 +7,7 @@ import { sizeWidth } from './app/src/util/Size';
 import { SplashScreen } from 'expo';
 import AppRouter from './app/src/routers/AppRouter';
 import NavigationActions from "./app/src/routers/NavigationActions";
+import { StatusBar } from 'expo-status-bar';
 
 const store = configureStore();
 
@@ -16,6 +16,7 @@ export default class App extends Component {
     return (
 
       <Provider store={store}>
+        <StatusBar style="auto" />
       <AppRouter ref={ref => NavigationActions.setTopLevelNavigator(ref)} />
     </Provider>
     );

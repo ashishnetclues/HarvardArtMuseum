@@ -12,6 +12,7 @@ import Header from '../screens/Header'
 import {
     setDataList
 } from '../actions/OrganizationAction';
+import { StatusBar } from 'expo-status-bar';
 
 const PAGE_SIZE = 30
 
@@ -101,6 +102,7 @@ class Home extends Component {
     render() {
         return(
             <SafeAreaView style={{flex:1}}>
+                <StatusBar style="auto" />
                 <View style={styles.container}>
                     <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Art List'}/>
                     <View style={styles.flatlistView}>

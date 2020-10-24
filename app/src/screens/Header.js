@@ -40,7 +40,7 @@ export default class Header extends PureComponent {
 };
 const styles = StyleSheet.create({
     container: {
-        height: sizeWidth(11), flexDirection: 'row'
+        height: sizeWidth(15), flexDirection: 'row'
     },
     firstView: {
         flex: 0.15, justifyContent: 'center', alignItems: 'center'

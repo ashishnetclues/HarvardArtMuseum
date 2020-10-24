@@ -6,6 +6,7 @@ import { sizeWidth, sizeFont, sizeHeight } from '../util/Size';
 import Validation from '../util/Validation';
 import Header from '../screens/Header'
 import { ScrollView } from 'react-native-gesture-handler';
+import { StatusBar } from 'expo-status-bar';
 export default class Detail extends Component {
     /* *****************************************************************************    LIFECYCLE METHOD  ******************************************************************************** */
     /* Constructor */
@@ -29,6 +30,7 @@ export default class Detail extends Component {
         return (
             <View style={styles.container}>
                 <SafeAreaView style={{ flex: 1 }}>
+                <StatusBar style="auto" />
                     <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Detail'} BackPress={() => this.backPress()} imgCloseBack={require('../../../assets/Back.png')} />
                     <ScrollView style={{flexGrow:1}}>
                     {/* Image */}
@@ -89,7 +91,7 @@ export default class Detail extends Component {
                     <View style={{ width: '97%', alignSelf: 'center', marginBottom: sizeWidth(2), marginTop: sizeWidth(2) }}>
                         <Text style={styles.descText}>
                             <Text>{'Description:'}</Text>
-                            <Text style={{ paddingLeft: sizeWidth(.32) }}>{this.state.artObject.description}</Text>
+                            <Text style={{ paddingLeft: sizeWidth(2.3) }}>{this.state.artObject.description}</Text>
                         </Text>
                     </View> : null }
 
