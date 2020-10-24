@@ -9,7 +9,6 @@ import colors from '../styles/Colors';
 import { sizeWidth,sizeFont,sizeHeight } from '../util/Size';
 import Validation from '../util/Validation';
 import Header from '../screens/Header'
-import { ThemeColors } from 'react-navigation';
 import {
     setDataList
 } from '../actions/OrganizationAction';
