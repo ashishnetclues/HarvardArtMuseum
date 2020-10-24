@@ -103,7 +103,7 @@ class Home extends Component {
         return(
             <SafeAreaView style={{flex:1}}>
                 <View style={styles.container}>
-                    <Header BackimgTint={colors.COLOR_WHITE} BackgoundColor={colors.COLOR_BLUE} title={'Art List'}/>
+                    <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Art List'}/>
                     <View style={styles.flatlistView}>
                         <FlatList showsHorizontalScrollIndicator={false}
                         contentContainerStyle={{ flexGrow: 1 }} 
