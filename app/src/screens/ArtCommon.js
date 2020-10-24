@@ -37,7 +37,7 @@ export default class ArtCommon extends Component {
     render() {
         const { titleTextStyle, titleText, imgSource, imgStyle, bottomTitle, bottomTitleStyle, bottomdesc, bottomdescStyle, titleNumberLines,onItemPress,myIndex,myItem } = this.props;
         return (
-            <TouchableOpacity onPress={() => this.onItemPress(myIndex, myItem)} style={[styles.container,{marginLeft: myIndex%2 === 0 ? sizeWidth(3) : sizeWidth(3)}]}>
+            <TouchableOpacity onPress={() => this.onItemPress(myIndex, myItem)} style={[styles.container]}>
                 <Text numberOfLines={titleNumberLines} style={titleTextStyle}>{titleText}</Text>
                 { Validation.isEmpty(imgSource) ? 
                     <View style={{ height: sizeWidth(35), width: '70%', alignSelf: 'center', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center' }}>
@@ -53,6 +53,6 @@ export default class ArtCommon extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        flex: 0.5, marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3)
+        flex: 0.5, marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3),marginLeft: sizeWidth(3)
     }
 })

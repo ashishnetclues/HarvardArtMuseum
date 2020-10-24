@@ -25,7 +25,7 @@ export default class Header extends PureComponent {
 
             <View style={[styles.container,{backgroundColor: BackgoundColor}]}>
                 <TouchableOpacity activeOpacity={0.7} onPress={() => this.BackPress()} style={[styles.firstView]}>
-                    {Validation.isEmpty(imgCloseBack) ? '' : <Image source={imgCloseBack} resizeMode="contain" style={[styles.backImgStyle,{tintColor:BackimgTint}]}></Image>}
+                    {Validation.isEmpty(imgCloseBack) ? null : <Image source={imgCloseBack} resizeMode="contain" style={[styles.backImgStyle,{tintColor:BackimgTint}]}></Image>}
                 </TouchableOpacity>
                 <View style={styles.centerView}>
                     <Text style={[styles.titleStyle,{color:BackimgTint}]}>{title}</Text>
