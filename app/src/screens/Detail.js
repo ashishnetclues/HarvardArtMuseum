@@ -28,7 +28,7 @@ export default class Detail extends Component {
         return (
             <View style={styles.container}>
                 <SafeAreaView style={{ flex: 1 }}>
-                    <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Detail'} BackPress={() => this.backPress()} imgCloseBack={require('../../../assets/Back.png')} />
+                    {/* <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Detail'} BackPress={() => this.backPress()} imgCloseBack={require('../../../assets/Back.png')} /> */}
                     {/* Image */}
                     <View style={{ height: '30%' }}>
                         {!this.state.artObject.hasOwnProperty('primaryimageurl') || Validation.isEmpty(this.state.artObject.primaryimageurl) ?

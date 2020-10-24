@@ -44,7 +44,7 @@ export default class ArtCommon extends Component {
                         <Text style={{ color: colors.COLOR_MAIN_TEXT, fontSize: sizeFont(4), fontWeight: 'bold',textAlign:'center' }}>{'NO IMAGE FOUND'}</Text>
                     </View>
                  :
-                <Image style={imgStyle} resizeMode="cover" source={imgSource}></Image> }
+                <Image style={imgStyle} resizeMode="cover" source={{uri:imgSource}}></Image> }
                 <Text style={bottomTitleStyle}>{bottomTitle}</Text>
                 <Text style={bottomdescStyle}>{bottomdesc}</Text>
             </TouchableOpacity>
