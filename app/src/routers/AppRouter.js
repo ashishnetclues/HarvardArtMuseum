@@ -16,10 +16,10 @@ const StackNavigator = createStackNavigator(
   {
     initialRouteName: 'Home',
     headerMode: 'none',
-    gesturesEnabled: false,
+    gesturesEnabled: true,
     defaultNavigationOptions: {
       cardOverlayEnabled: false,
-      gestureEnabled: false,
+      gestureEnabled: true,
     },
   },
 );
