@@ -30,14 +30,14 @@ export default class Detail extends Component {
             <View style={styles.container}>
                 <SafeAreaView style={{ flex: 1 }}>
                     <Header BackimgTint={colors.COLOR_BLUE} BackgoundColor={colors.COLOR_WHITE} title={'Detail'} BackPress={() => this.backPress()} imgCloseBack={require('../../../assets/Back.png')} />
-                    <ScrollView style={{flex:1}}>
+                    <ScrollView style={{flexGrow:1}}>
                     {/* Image */}
-                    <View style={{ height: '30%',width:'100%' }}>
+                    <View style={{ height: sizeWidth(60),width:'100%' }}>
                         {!this.state.artObject.hasOwnProperty('primaryimageurl') || Validation.isEmpty(this.state.artObject.primaryimageurl) ?
                             <View style={{ height: '100%', width: '100%', backgroundColor: colors.COLOR_BLUE, justifyContent: 'center', alignItems: 'center' }}>
                                 <Text style={{ color: colors.COLOR_GREY, fontSize: sizeFont(5), fontWeight: 'bold' }}>{'NO IMAGE FOUND'}</Text>
                             </View>
-                            : <Image resizeMode="contain" source={{ uri: this.state.artObject.primaryimageurl }} style={{ height: '100%', width: '100%', backgroundColor: colors.COLOR_BLUE }}></Image>
+                            : <Image resizeMode="contain" source={{ uri: this.state.artObject.primaryimageurl }} style={{ height: '100%', width: '100%', backgroundColor: colors.COLOR_WHITE }}></Image>
                         }
                     </View>
                     {/* Image */}

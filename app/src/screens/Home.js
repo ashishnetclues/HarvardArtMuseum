@@ -103,7 +103,7 @@ class Home extends Component {
         return(
             <SafeAreaView style={{flex:1}}>
                 <View style={styles.container}>
-                    {/* <Header BackimgTint={colors.COLOR_WHITE} BackgoundColor={colors.COLOR_BLUE} title={'Art List'}/> */}
+                    <Header BackimgTint={colors.COLOR_WHITE} BackgoundColor={colors.COLOR_BLUE} title={'Art List'}/>
                     <View style={styles.flatlistView}>
                         <FlatList showsHorizontalScrollIndicator={false}
                         contentContainerStyle={{ flexGrow: 1 }} 
@@ -124,7 +124,7 @@ class Home extends Component {
 const styles = StyleSheet.create({
     container: { flex: 1 },
     listItemContainer: { flex: 0.5, marginTop: sizeWidth(3), marginLeft: sizeWidth(3),backgroundColor:colors.COLOR_BLUE,padding:sizeWidth(3)},
-    flatlistView:{ flex: 1,backgroundColor: colors.COLOR_WHITE,paddingBottom: sizeWidth(3),paddingRight: sizeWidth(3), }
+    flatlistView:{ flex: 1,backgroundColor: colors.COLOR_WHITE,paddingBottom: sizeWidth(3),marginRight:sizeWidth(2) }
 });
 
 const mapStateToProps = state => {
