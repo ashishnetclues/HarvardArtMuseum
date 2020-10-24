@@ -53,6 +53,6 @@ export default class ArtCommon extends Component {
 }
 const styles = StyleSheet.create({
     container: {
-        width: sizeWidth(46), marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3),marginLeft:sizeWidth(2)
+        width: sizeWidth(47), marginTop: sizeWidth(3), backgroundColor: colors.COLOR_BLUE, padding: sizeWidth(3),marginLeft:sizeWidth(1.5)
     }
 })
